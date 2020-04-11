@@ -116,6 +116,7 @@ begin
             total_new_likes += 1
             sleep SLEEP_TIME_BETWEEN_LIKES.sample
             @driver.find_element(css: "svg[aria-label=Like]").click
+            sleep 1
           else
             old_likes += 1
             total_old_likes += 1
