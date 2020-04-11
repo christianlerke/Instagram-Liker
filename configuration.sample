@@ -1,0 +1,21 @@
+### You need to replace these with your data and what you want to like
+
+INSTAGRAM_USER = 'YOUR INSTAGRAM USER NAME' # replace with your instagram username
+INSTAGRAM_PASS = 'YOUR INSTAGRAM PASSWORD' # replace with your instagram password
+
+# Tags or locations you want to like
+INSTAGRAM_URLS = [
+  "https://www.instagram.com/explore/tags/tenerife/",
+  "https://www.instagram.com/explore/locations/281407321/tenerife/"
+].uniq
+
+
+### These are good defaults, no need to change them
+
+MAX_PHOTOS = 100 # maximum photos to like per url
+MIN_LIKES_TO_LIKE = 20 # minimum number of likes on photo before the script is allowed to like it
+SLEEP_TIME_BETWEEN_LIKES = 30 # seconds to @wait between likes
+SLEEP_TIME_BETWEEN_URLS = 120 # seconds to @wait between urls
+SLEEP_TIME_BETWEEN_ITTERATIONS = 600 # seconds to @wait between itterations
+VERBOSE = false # set this to true if you want detailed information on what's going on
+HEADLESS = true # set this to false if you want to see the browser window
