@@ -105,7 +105,9 @@ begin
       new_likes = 0
       old_likes = 0
 
-      while @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0 and photos_browsed < MAX_PHOTOS
+      max_likes = MAX_PHOTOS.sample
+
+      while @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0 and new_likes < max_likes
         likes = if @driver.find_elements(xpath: "//button[boolean(number(substring-before(normalize-space(), ' likes')))]").count > 0
           @driver.find_element(xpath: "//button[boolean(number(substring-before(normalize-space(), ' likes')))]").text.gsub(/[,\.\D\s]/, "").to_i
         end
