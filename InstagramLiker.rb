@@ -159,6 +159,7 @@ begin
 
 rescue => e
   puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations} | New Likes #{total_new_likes} | Old Likes #{total_old_likes}"
+  @driver.save_screenshot("error.png")
   raise e
 end
 
