@@ -21,7 +21,7 @@ The script will do the following when run:
   - press `enter`
   - You're now in the folder
 - Run the command to set up your configuration
-  - `mv configuration.sample configuration.rb`
+  - `cp configuration.sample configuration.rb`
 - Open the `configuration.rb` file in a text editor and configure it with your details
 - Install the required libraries (in the Ternimal)
   - `gem install bundler`
