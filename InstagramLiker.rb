@@ -88,7 +88,7 @@ begin
   while true
     INSTAGRAM_URLS.shuffle.each do |url|
 
-      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | #{url}"
+      puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | #{url}"
 
       @driver.navigate.to url
       sleep 5
@@ -130,9 +130,10 @@ begin
 
         print "#{Time.now.strftime("%d %b %H:%M:%S")} | New Likes #{new_likes} | Old Likes #{old_likes} | Browsed #{photos_browsed}\r"
         $stdout.flush
+        puts "\n" if VERBOSE
 
         if @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0
-          puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | Moving to next photo" if VERBOSE
+          puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Moving to next photo" if VERBOSE
           @driver.find_element(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").click
           sleep 3
           @wait.until { @driver.find_element(css: 'svg[aria-label="Share Post"]') }
@@ -140,13 +141,12 @@ begin
       end
 
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | No Next Link or MAX_PHOTOS reached" if VERBOSE
-      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | New Likes #{new_likes} | Old Likes #{old_likes}"
       
       sleep SLEEP_TIME_BETWEEN_URLS
 
     end
 
-    puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
+    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
 
     total_itterations += 1
 
