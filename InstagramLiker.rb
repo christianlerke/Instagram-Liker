@@ -85,7 +85,7 @@ begin
     login_and_save_cookies
   end
 
-  (1..10).to_a.each do |i|
+  while true
     INSTAGRAM_URLS.shuffle.each do |url|
 
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | #{url}"
@@ -146,15 +146,13 @@ begin
 
     end
 
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
+    puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
 
     total_itterations += 1
 
     sleep SLEEP_TIME_BETWEEN_ITTERATIONS
     
   end
-
-  save_cookies!
 
 rescue => e
   puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations} | New Likes #{total_new_likes} | Old Likes #{total_old_likes}"
