@@ -114,8 +114,8 @@ begin
             puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Liking Photo (#{likes} likes)" if VERBOSE
             new_likes += 1
             total_new_likes += 1
+            sleep SLEEP_TIME_BETWEEN_LIKES.sample
             @driver.find_element(css: "svg[aria-label=Like]").click
-            sleep SLEEP_TIME_BETWEEN_LIKES
           else
             old_likes += 1
             total_old_likes += 1

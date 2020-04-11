@@ -14,7 +14,7 @@ INSTAGRAM_URLS = [
 
 MAX_PHOTOS = 100 # maximum photos to like per url
 MIN_LIKES_TO_LIKE = 20 # minimum number of likes on photo before the script is allowed to like it
-SLEEP_TIME_BETWEEN_LIKES = 30 # seconds to @wait between likes
+SLEEP_TIME_BETWEEN_LIKES = [10,30] # seconds to @wait between likes
 SLEEP_TIME_BETWEEN_URLS = 120 # seconds to @wait between urls
 SLEEP_TIME_BETWEEN_ITTERATIONS = 600 # seconds to @wait between itterations
 VERBOSE = false # set this to true if you want detailed information on what's going on
