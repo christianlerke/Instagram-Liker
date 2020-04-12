@@ -12,7 +12,7 @@ INSTAGRAM_URLS = [
 
 ### These are good defaults, no need to change them
 
-MAX_PHOTOS = (50..100) # maximum photos to like per url
+MAX_PHOTOS = (15..40) # maximum photos to like per url
 MIN_LIKES_TO_LIKE = 10 # minimum number of likes on photo before the script is allowed to like it
 SLEEP_TIME_BETWEEN_LIKES = (10..20) # seconds to @wait between likes
 SLEEP_TIME_BETWEEN_URLS = (300..600) # seconds to @wait between urls

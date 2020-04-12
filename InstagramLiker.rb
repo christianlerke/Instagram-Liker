@@ -151,6 +151,8 @@ begin
 
     end
 
+    @driver.navigate.to 'https://www.google.com'
+
     puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
 
     total_itterations += 1
