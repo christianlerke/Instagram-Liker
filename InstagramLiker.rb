@@ -105,7 +105,7 @@ begin
       new_likes = 0
       old_likes = 0
 
-      max_likes = MAX_PHOTOS.sample
+      max_likes = MAX_PHOTOS.to_a.sample
 
       while @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0 and new_likes < max_likes
         likes = if @driver.find_elements(xpath: "//button[boolean(number(substring-before(normalize-space(), ' likes')))]").count > 0
@@ -116,9 +116,9 @@ begin
             puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Liking Photo (#{likes} likes)" if VERBOSE
             new_likes += 1
             total_new_likes += 1
-            sleep (SLEEP_TIME_BETWEEN_LIKES.sample / 2).to_i
+            sleep (SLEEP_TIME_BETWEEN_LIKES.to_a.sample / 2).to_i
             @driver.find_element(css: "svg[aria-label=Like]").click
-            sleep (SLEEP_TIME_BETWEEN_LIKES.sample / 2).to_i
+            sleep (SLEEP_TIME_BETWEEN_LIKES.to_a.sample / 2).to_i
           else
             old_likes += 1
             total_old_likes += 1
@@ -143,9 +143,11 @@ begin
         end
       end
 
+      @driver.navigate.to 'https://www.google.com'
+
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | No Next Link or MAX_PHOTOS reached" if VERBOSE
       
-      sleep SLEEP_TIME_BETWEEN_URLS
+      sleep SLEEP_TIME_BETWEEN_URLS.to_a.sample
 
     end
 
@@ -153,7 +155,7 @@ begin
 
     total_itterations += 1
 
-    sleep SLEEP_TIME_BETWEEN_ITTERATIONS
+    sleep SLEEP_TIME_BETWEEN_ITTERATIONS.to_a.sample
     
   end
 
