@@ -13,7 +13,7 @@ load './configuration.rb'
 @wait = Selenium::WebDriver::Wait.new timeout: 30
 
 options = Selenium::WebDriver::Chrome::Options.new
-# options.add_argument("--window-size=3000,10000)
+options.add_argument("--window-size=1000,2000")
 options.add_argument('--headless') if HEADLESS
       
 @driver = Selenium::WebDriver.for :chrome, options: options
