@@ -153,9 +153,8 @@ begin
 
     @driver.navigate.to 'https://www.google.com'
 
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{i}"
-
     total_itterations += 1
+    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations}"
 
     sleep SLEEP_TIME_BETWEEN_ITTERATIONS.to_a.sample
     
