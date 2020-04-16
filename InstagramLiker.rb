@@ -23,6 +23,9 @@ total_old_likes = 0
 total_browsed = 0
 total_itterations = 0
 
+start_time = Time.now
+max_seconds = MAX_HOURS * 60 * 60
+
 def login_and_save_cookies
   puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logging In"
   @driver.navigate.to 'https://www.instagram.com/accounts/login/'
@@ -73,7 +76,7 @@ begin
     end
 
     @driver.navigate.to 'https://www.instagram.com'
-    sleep 3
+    sleep 5
     
     if(@driver.find_elements(css: "#react-root main[role=main] article img").count > 0)
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logged in with cookies" if VERBOSE
@@ -85,7 +88,7 @@ begin
     login_and_save_cookies
   end
 
-  while true
+  while Time.now > start_time + max_seconds
     INSTAGRAM_URLS.shuffle.each do |url|
 
       puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | #{url}"
@@ -107,7 +110,7 @@ begin
 
       max_likes = MAX_PHOTOS.to_a.sample
 
-      while @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0 and new_likes < max_likes
+      while Time.now > start_time + max_seconds and @driver.find_elements(xpath: "//a[contains(@class, 'coreSpriteRightPaginationArrow') and normalize-space() = 'Next']").count > 0 and new_likes < max_likes
         likes = if @driver.find_elements(xpath: "//button[boolean(number(substring-before(normalize-space(), ' likes')))]").count > 0
           @driver.find_element(xpath: "//button[boolean(number(substring-before(normalize-space(), ' likes')))]").text.gsub(/[,\.\D\s]/, "").to_i
         end
