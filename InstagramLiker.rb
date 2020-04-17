@@ -65,7 +65,7 @@ end
 begin
   
   if File.exists? 'cookies.dump'
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies found, attempting to load" if VERBOSE
+    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies found, attempting to load"
 
     @driver.navigate.to 'https://www.instagram.com'
     sleep 3
@@ -76,12 +76,12 @@ begin
     end
 
     @driver.navigate.to 'https://www.instagram.com'
-    sleep 5
+    sleep 10
     
     if(@driver.find_elements(css: "#react-root main[role=main] article img").count > 0)
-      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logged in with cookies" if VERBOSE
+      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logged in with cookies"
     else
-      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies invalid, logging in" if VERBOSE
+      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies invalid, logging in"
       login_and_save_cookies
     end
   else
