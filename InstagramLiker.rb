@@ -76,12 +76,21 @@ begin
     end
 
     @driver.navigate.to 'https://www.instagram.com'
-    sleep 10
-    
+    30.times do |i| # sleep 30 seconds max
+      if (notification_popup_buttons = @driver.find_elements css: "div[role=presentation] div[role=dialog] button").count > 0
+        puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup found" if VERBOSE
+        notification_popup_buttons.last.click
+        puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup dismissed" if VERBOSE
+      end
+      break if @driver.find_elements(css: "#react-root main[role=main] article img").count > 0
+      sleep 1
+    end
+
     if(@driver.find_elements(css: "#react-root main[role=main] article img").count > 0)
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logged in with cookies"
     else
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies invalid, logging in"
+      @driver.manage.delete_all_cookies
       login_and_save_cookies
     end
   else
