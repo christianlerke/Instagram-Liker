@@ -157,15 +157,16 @@ begin
     @driver.navigate.to 'https://www.google.com'
 
     total_itterations += 1
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations}"
+    puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations} | New Likes #{total_new_likes} | Old Likes #{total_old_likes}"
 
     sleep SLEEP_TIME_BETWEEN_ITTERATIONS.to_a.sample
     
   end
 
 rescue => e
-  puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations} | New Likes #{total_new_likes} | Old Likes #{total_old_likes}"
+  puts "\n#{Time.now.strftime("%d %b %H:%M:%S")} | Completed Iterations: #{total_itterations} | New Likes #{total_new_likes} | Old Likes #{total_old_likes}"
   @driver.save_screenshot("error.png")
+  @driver.close
   raise e
 end
 
