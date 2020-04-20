@@ -90,6 +90,7 @@ begin
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Logged in with cookies"
     else
       puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Cookies invalid, logging in"
+      @driver.save_screenshot("invalid-cookies.png")
       @driver.manage.delete_all_cookies
       login_and_save_cookies
     end
