@@ -42,16 +42,15 @@ def login_and_save_cookies
   sleep 5
 
   # check that login was successfull
-  @wait.until { @driver.find_element css: "#react-root main[role=main] article img" }
-  puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Login successfull" if VERBOSE
-
-  if (notification_popup_buttons = @driver.find_elements css: "div[role=presentation] div[role=dialog] button").count > 0
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup found" if VERBOSE
-    notification_popup_buttons.last.click
-    puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup dismissed" if VERBOSE
+  30.times do |i| # sleep 30 seconds max
+    if (notification_popup_buttons = @driver.find_elements css: "div[role=presentation] div[role=dialog] button").count > 0
+      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup found" if VERBOSE
+      notification_popup_buttons.last.click
+      puts "#{Time.now.strftime("%d %b %H:%M:%S")} | Popup dismissed" if VERBOSE
+    end
+    break if @driver.find_elements(css: "#react-root main[role=main] article img").count > 0
+    sleep 1
   end
-
-  sleep 1
 
   save_cookies!
 end
