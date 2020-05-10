@@ -10,7 +10,7 @@
 require "selenium-webdriver"
 load './configuration.rb'
 
-@wait = Selenium::WebDriver::Wait.new timeout: 30
+@wait = Selenium::WebDriver::Wait.new timeout: TIMEOUT
 
 options = Selenium::WebDriver::Chrome::Options.new
 options.add_argument("--window-size=2000,3000")
